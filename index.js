@@ -16,6 +16,9 @@ app.use(express.urlencoded({
 
 // ****** Redirecting Routes ****** //
 app.use('/', require('./routes'));
+app.get("/api/welcome",(req,res)=>{
+  res.status(200).send({message:"welcome to hospital api"});
+})
 
 app.listen(port, function (err) {
     if (err) { console.log('error'); return; } // ****** Print if error ****** //
