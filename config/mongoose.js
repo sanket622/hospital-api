@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 
 
 // MAKING CONNECTION 
-const DB = mongoose.connect('mongodb://localhost/hospital_API', { useNewUrlParser: true, useUnifiedTopology: true });
+const DB = mongoose.connect('mongodb+srv://user121:1234@cluster0.rr2mpun.mongodb.net/myMovieList?retryWrites=true&w=majority&appName=Cluster0');
 
 
 // Handle connection status
