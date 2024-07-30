@@ -8,6 +8,7 @@ const passport = require('passport');
 
 
  router.post('/register',verifyToken, patientController.register);
+ router.get('/all_patients',patientController.all_patients);
 
  
  //- /patients/:id/create_report

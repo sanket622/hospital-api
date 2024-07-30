@@ -45,4 +45,17 @@ exports.register= async (req, res) => {
     }
   };
 
-  
+  module.exports.all_patients = async function (req, res) {
+    try {
+      // Use await with find() to get all doctors
+      const patients = await Patient.find({});
+      // Send the patients as a response
+      return res.send(patients);
+    } catch (err) {
+      // ****** Error Handling ****** //
+      return res.status(401).json({
+        success: false,
+        msg: err.message,
+      });
+    }
+  };

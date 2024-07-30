@@ -70,3 +70,18 @@ module.exports.login= async (req, res)=>{
     });
   }
 }
+
+module.exports.all_doctors = async function (req, res) {
+  try {
+    // Use await with find() to get all doctors
+    const doctors = await Doctor.find({});
+    // Send the doctors as a response
+    return res.send(doctors);
+  } catch (err) {
+    // ****** Error Handling ****** //
+    return res.status(401).json({
+      success: false,
+      msg: err.message,
+    });
+  }
+};
