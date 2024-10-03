@@ -17,7 +17,7 @@ app.use(passport.initialize());
 
 app.use('/', routes);
 
-app.get("/api/welcome", (req, res) => {
+app.get("/", (req, res) => {
   res.status(200).json({ message: "Welcome to the Hospital API" });
 });
 
