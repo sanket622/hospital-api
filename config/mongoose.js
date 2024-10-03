@@ -1,7 +1,8 @@
-
 const mongoose = require("mongoose");
 
-const DB = mongoose.connect('mongodb://localhost/hospital_API', { useNewUrlParser: true, useUnifiedTopology: true });
+const MONGO_URI=process.env.MONGO_URI
+
+const DB = mongoose.connect(MONGO_URI);
 
 
 // Handle connection status
