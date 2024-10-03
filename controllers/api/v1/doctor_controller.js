@@ -63,3 +63,8 @@ exports.login = async (req, res) => {
     });
   }
 }
+
+exports.all_doctors = async (req, res) => {
+  const doctors = await Doctor.find(); 
+  res.status(200).json({ success: true, doctors });
+};
