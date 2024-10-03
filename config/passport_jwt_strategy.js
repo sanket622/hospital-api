@@ -1,29 +1,24 @@
 const passport = require('passport');
 const JWTStrategy = require('passport-jwt').Strategy;
 const ExtractJWT = require('passport-jwt').ExtractJwt;
-
 const Doctor = require('../models/doctorModel');
 
-// ****** Passport Authentication ****** //
-let opts = {
+const opts = {
     jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
-    secretOrKey: "secrethospitalkey"
-}
+    secretOrKey: process.env.SECRETHOSPITALKEY 
+};
 
-passport.use(new JWTStrategy(opts, function(jwtPayLoad, done){
-    // ****** Finding Doctor ****** //
-    Doctor.findById(jwtPayLoad._id, function(err, user){ 
-        if (err){ // ****** Error Handling ****** //
-            console.log('Error in finding user from JWT'); 
-            return done(err,false);}
-
-        if (user){ // ****** If the user is found ****** //
+passport.use(new JWTStrategy(opts, async (jwtPayload, done) => {
+    try {
+        const user = await Doctor.findById(jwtPayload.id);
+        if (user) {
             return done(null, user);
-        }else{ // ****** If user is not found ****** //
-            return done(null, false);
         }
-    })
-
+        return done(null, false);
+    } catch (err) {
+        console.error('Error finding user from JWT:', err);
+        return done(err, false);
+    }
 }));
 
 module.exports = passport;

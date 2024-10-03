@@ -1,7 +1,5 @@
-// ****** Importing ****** //
 const mongoose = require('mongoose');
 
-// ****** Defining Patient Schema ****** //
 const patientSchema = new mongoose.Schema({
     
   phone: {
@@ -22,6 +20,5 @@ const patientSchema = new mongoose.Schema({
     timestamps: true
   });
 
-// ****** Exports ****** //
 const Patient = mongoose.model('Patient', patientSchema);
 module.exports = Patient;

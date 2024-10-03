@@ -1,7 +1,5 @@
-// ****** Importing ****** //
 const mongoose = require('mongoose');
 
-// ****** Defining Report Schema ****** //
 const reportSchema = new mongoose.Schema({
     
   doctor: {
@@ -30,6 +28,6 @@ const reportSchema = new mongoose.Schema({
   timestamps: true
 });
 
-// ****** Exports ****** //
+
 const Report = mongoose.model('Report', reportSchema);
 module.exports = Report;
