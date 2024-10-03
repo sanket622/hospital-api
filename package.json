@@ -13,7 +13,11 @@
     "bcrypt": "^5.0.0",
     "bcryptjs": "^2.4.3",
     "dotenv": "^16.4.5",
+<<<<<<< HEAD
     "express": "^4.18.3",
+=======
+    "express": "^4.19.2",
+>>>>>>> 0433db7294c33361619c252a5f13a14e37851a5b
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.29",
     "nodemon": "^2.0.4",

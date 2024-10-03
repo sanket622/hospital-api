@@ -27,26 +27,39 @@ exports.login = async (req, res) => {
             });
         }
 
-        const doctor = await Doctor.findOne({ email });
-        if (!doctor || !(await doctor.matchPassword(password))) {
-            return res.status(401).json({
-                success: false,
-                msg: "Invalid email or password"
-            });
-        }
-
-        const token = jwt.sign({ id: doctor._id }, process.env.SECRETHOSPITALKEY, { expiresIn: '1h' }); 
-
-        return res.status(200).json({
-            success: true,
-            token,
-            msg: `Login successful! Welcome, ${doctor.username}`
-        });
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({
-            success: false,
-            msg: 'Server error'
-        });
+    let doctor = await Doctor.findOne({ email: email });
+    if (!doctor) { // ****** If Doctor not found ****** //
+      return res.status(401).json({ 
+        success: false, 
+        msg: "Invalid Username or Password!" 
+      });
     }
-};
+
+    // ****** Checking if the passwords matches ****** //
+    const isMatch = await doctor.matchPassword(password);
+    // ****** Password Invalid - Error Handling ****** //
+    if (!isMatch) {
+      return res.status(401).json({ 
+        success: false, 
+        msg: "Invalid Username or Password!" 
+      });
+    }
+
+    // ****** Getting the JWT Token ****** //
+    const token = doctor.getSignedJwtToken();
+
+    // ****** Return Response ****** //
+    res.status(200).json({
+      success: true,
+      token,
+      msg: `Log In Sucessful! Keep the Token safely  ${doctor.username}!`
+    });
+
+  } catch (error) { // ****** Error Handling in the catch block ****** //
+    console.log(error);
+    res.status(400).json({
+      success: false,
+      msg:'Error Occoured!'
+    });
+  }
+}

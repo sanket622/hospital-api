@@ -27,4 +27,6 @@ exports.register = async (req, res) => {
             msg: 'Error occurred while registering patient'
         });
     }
-};
+  };
+
+  
