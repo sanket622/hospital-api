@@ -1,4 +1,4 @@
-DEPLOYMENT LINK --> [https://hospital-api-fo0b.onrender.com/].
+DEPLOYMENT LINK --> [https://hospital-api-4pxs.onrender.com/].
 
 Different APIs to create data in Postman --> 
 
